@@ -38,7 +38,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto text-uppercase">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#" onclick="homeCatalog();">Inicio</a>
+                                <a class="nav-link" href="<?=BASE_URL?>">Inicio</a>
                             </li>
                         </ul>
                     </div>

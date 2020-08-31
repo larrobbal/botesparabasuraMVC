@@ -3,7 +3,7 @@
     * Copyright 2013-2020 Start Bootstrap
     * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-agency/blob/master/LICENSE)
     */
-   (function ($) {
+(function ($) {
     "use strict"; // Start of use strict
 
     // Smooth scrolling using jQuery easing
@@ -82,8 +82,6 @@
     });
     $(document).ready(function () {
         var xhr = new XMLHttpRequest();
-        var catalogContent = $('div#catalog-content');
-        var catalog = document.getElementById('catalog-content');
         var sidebar = document.getElementById('sidebar-options');
         var myObj;
         var data={};
@@ -100,14 +98,6 @@
             {
                 txt += this.responseText;
                 myObj = JSON.parse(this.responseText);
-                catalogContent.empty();
-                myObj.forEach(element => 
-                {
-                    var divElement = document.createElement('div');
-                    divElement.setAttribute('class','col-sm-6 col-md-4 col-lg-3 col-xl-3 my-3');
-                    divElement.innerHTML='<div class="product tumbnail thumbnail-3"><a class="catalog-category" id="'+element.idCategoria+'" href="#" onclick="catalog(event,this,\''+element.nombreCategoria+'\');"><img class="img-fluid h-100 rounded catalog-item" src="http://localhost/botesparabasuraMVC/assets/img/catalog/category/'+element.imagenCategoria+'.jpg" alt="'+element.nombreCategoria+'"></a><div class="caption"><span>'+element.nombreCategoria+'</span> </div></div>';
-                    catalog.appendChild(divElement);
-                });
                 myObj.forEach(element => 
                 {
                     var listCategorySidebar = document.createElement('li');

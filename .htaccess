@@ -1,9 +1,16 @@
 <IfModule mod_rewrite.c>
     RewriteEngine on
-    ErrorDocument 404 http://localhost/botesparabasuraMVC/error/
-
+    ErrorDocument 404 http://localhost/botesparabasuraMVC/error
+    RewriteBase /
     RewriteCond %{SCRIPT_FILENAME} !-d
     RewriteCond %{SCRIPT_FILENAME} !-f
+    
+    #Categorias
+    RewriteRule ^/(.*)$ http://localhost/botesparabasuraMVC/index.php?controller=$1&action=index
+    
+    #Subcategorias
+    RewriteRule ^categoria/(.*)$ http://localhost/botesparabasuraMVC/index.php?controller=subcategoria&action=loadsubcat&categoria=$1
 
-    RewriteRule ^(.*)/(.*) index.php?controller=$1&action=$2 [L,QSA]
+    #Productos
+    RewriteRule ^categoria/(.*)/(.*)$ http://localhost/botesparabasuraMVC/index.php?controller=producto&action=loadproductos&subcategoria=$1
 </IfModule>
