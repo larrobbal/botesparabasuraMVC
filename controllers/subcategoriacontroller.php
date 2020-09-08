@@ -2,13 +2,14 @@
     require_once 'models/subcategoria.php';
     class subcategoriacontroller
     {
-        public function loadsubcat()
+        public function loadproductos()
         {
-            if(isset($_GET['categoria']))
+            if(isset($_GET['subcategoria']))
             {
                 $subcategoria = new Subcategoria();
-                $result = $subcategoria->loadSubcategorias($_GET['categoria']);
-                require_once 'views/subcategoria/index.php';
+                $subcategoria->setControladorSubcategoria($_GET['subcategoria']);
+                $result = $subcategoria->loadProductos();
+                require_once 'views/producto/index.php';
             }
         }
     }

@@ -58,9 +58,11 @@
             return $this->imagenSubcategoria;
         }
 
-        public function loadSubcategorias($categoria)
+        public function loadProductos()
         {
-            $load = $this->db->query("SELECT idSubcategoria,nombreSubcategoria,controlador_subcategoria,imagenSubcategoria FROM subcategoria subcat INNER JOIN categoria cat ON subcat.fk_idCategoria = cat.idCategoria WHERE cat.controlador_categoria ='$categoria';");
+            $subcategoria=$this->getControladorSubcategoria();
+            $load = $this->db->query("SELECT idProducto,nombreProducto,imagenProducto FROM producto p INNER JOIN subcategoria s ON p.fk_idSubcategoria = s.idSubcategoria WHERE s.controlador_subcategoria ='$subcategoria';");
+            $_SESSION['nombreSubcategoria']=$this->db->query("SELECT nombreSubcategoria FROM subcategoria WHERE controlador_subcategoria = '$subcategoria';");
             return $load;
         }
     }

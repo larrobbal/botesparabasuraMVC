@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="<?=BASE_URL?>assets/vendor/socialfloating/css/socialfloating.css">
         <link rel="stylesheet" href="<?=BASE_URL?>assets/vendor/wppfloating/css/floating-wpp.css">
     </head>
-    <body id="page-top">
+    <body id="page-top" onload="navbarLoad();">
         <!--Contenido-->
         <div id="content">
             <!--MainNav-->
@@ -34,11 +34,11 @@
                     <button class="btn btn-link d-inline-block d-lg-none ml-auto" type="button" aria-expanded="false" aria-label="Inicio" onclick="homeCatalog();">
                         <i class="fa fa-home"></i>
                     </button>
-                    <div class="brand-wraper ml-auto justify-content-center"><a class="navbar-brand" href="index.html"><img src="<?=BASE_URL?>assets/img/Logo-transparente.png" class="logo" alt="Botes para Basura"></a></div>
+                    <div class="brand-wraper ml-auto justify-content-center"><a class="navbar-brand" href="/botesparabasuraMVC/index.html"><img src="<?=BASE_URL?>assets/img/Logo-transparente.png" class="logo" alt="Botes para Basura"></a></div>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto text-uppercase">
                             <li class="nav-item active">
-                                <a class="nav-link" href="<?=BASE_URL?>">Inicio</a>
+                                <a class="nav-link" href="<?=BASE_CATALOG?>">Inicio</a>
                             </li>
                         </ul>
                     </div>

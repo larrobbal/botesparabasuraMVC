@@ -4,17 +4,14 @@
     $str_json = file_get_contents('php://input');
     $response = json_decode($str_json, true);
     $data_source=new DataSource();
-    if(isset($response['categoria']) || isset($_POST['categoria']))
+    if(isset($response['idCategoria']))
     {
-        if(isset($_POST['categoria']))
-            $idCatego=$_POST['categoria'];
-        else
-            $idCatego=$response['categoria'];
-        $query="SELECT idSubcategoria,nombreSubcategoria,imagenSubcategoria FROM subcategoria WHERE fk_idCategoria = '$idCatego'";
+        $idCatego=$response['idCategoria'];
+        $query="SELECT idSubcategoria,nombreSubcategoria,imagenSubcategoria,controlador_subcategoria FROM subcategoria WHERE fk_idCategoria = '$idCatego'";
         $result_query = $data_source->exeConsulta($query);
         foreach($result_query as $row)
         {
-            $result[]=Array('idSubcategoria'=>$row['idSubcategoria'],'nombreSubcategoria'=>$row['nombreSubcategoria'],'imagenSubcategoria'=>$row['imagenSubcategoria']);
+            $result[]=Array('idSubcategoria'=>$row['idSubcategoria'],'nombreSubcategoria'=>$row['nombreSubcategoria'],'imagenSubcategoria'=>$row['imagenSubcategoria'],'controlador_subcategoria'=>$row['controlador_subcategoria']);
         }
         $json=json_encode($result);
         echo $json;

@@ -1,4 +1,4 @@
-    <h2 class="text-center py-3 catalog-category-title"><?=$result->getNombreSubcategoria?></h1>
+    <h2 class="text-center py-3 catalog-category-title"><?php $_SESSION['nombreCategoria'];?></h2>
     <div class="text-center catalog-subcategory-title">Selecciona la linea de productos que deseas visitar</div>
     <div class="row flow-offset-1 text-center catalog-content" id="catalog-content">
         <?php while($subcategoria=$result->fetch_object()):?>
