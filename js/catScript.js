@@ -91,7 +91,7 @@ function navbarLoad() {
     var txt="";
     data['cat']=true;
     var json_string = JSON.stringify(data);
-    xhr.open('POST',GLOBAL_URL+"assets/php/productos.php",true);
+    xhr.open('POST',"assets/php/productos.php",true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(json_string);
 
@@ -117,7 +117,7 @@ function navbarLoad() {
                 data2['idCategoria']=element.idCategoria;
                 var json_string = JSON.stringify(data2);
                 console.log(json_string);
-                xhr.open('POST',GLOBAL_URL+"assets/php/productos.php",true);
+                xhr.open('POST',"assets/php/productos.php",true);
                 xhr.setRequestHeader("Content-type","application/json");
                 xhr.send(json_string);
                 xhr.onreadystatechange = function()
