@@ -1,16 +1,15 @@
 <IfModule mod_rewrite.c>
     RewriteEngine on
+    Options +FollowSymlinks
+    DirectoryIndex index.html
+
     ErrorDocument 404 http://localhost/botesparabasuraMVC/error
-    RewriteBase /
     RewriteCond %{SCRIPT_FILENAME} !-d
     RewriteCond %{SCRIPT_FILENAME} !-f
     
-    #Categorias
-    RewriteRule ^/(.*)$ http://localhost/botesparabasuraMVC/index.php?controller=$1&action=index
-    
-    #Subcategorias
-    RewriteRule ^categoria/(.*)$ http://localhost/botesparabasuraMVC/index.php?controller=subcategoria&action=loadsubcat&categoria=$1
+    RewriteRule ^catalogo$ http://localhost/botesparabasuraMVC/catalogo.php
+        
+    RewriteRule ^catalogo/(.*)$ http://localhost/botesparabasuraMVC/catalogo.php?controller=categoria&action=loadsubcat&categoria=$1
 
-    #Productos
-    RewriteRule ^categoria/(.*)/(.*)$ http://localhost/botesparabasuraMVC/index.php?controller=producto&action=loadproductos&subcategoria=$1
+    RewriteRule ^subcategoria/(.*)$ http://localhost/botesparabasuraMVC/catalogo.php?controller=subcategoria&action=loadproductos&subcategoria=$1
 </IfModule>

@@ -78,24 +78,4 @@
           $("a.cb-link.cb-anchor span#social-float-layer").addClass("social-float-layer")
         }
     );
-    /*Masthead cards show img
-    $('a.card-a').click(
-        function()
-        {
-            var id = 'div#cat'+$(this).attr('id');
-            if($(id).is(":hidden"))
-            {
-                
-                var arr=$('#category-list').find('.card-body');
-                for(var i=0;i<arr.length;i++)
-                {
-                    if($(arr[i]).is(':visible'))
-                        $(arr[i]).slideUp('300');
-                }
-                $(id).slideDown('300');
-            }
-            else
-                $(id).slideUp('300');
-        }
-    );*/
 })(jQuery); // End of use strict

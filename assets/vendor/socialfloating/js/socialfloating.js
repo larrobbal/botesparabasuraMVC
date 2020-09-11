@@ -11,8 +11,8 @@ $.socialfloating({
       { message: 'Tienda', icon: 'shopping cart', enabled: true, link: 'https://botesparabasuracom.mercadoshops.com.mx', color: '#FF8000' }
     ],
     [
-      { message: 'Facebook ', icon: 'facebook', enabled: true, link: 'https://www.facebook.com/pages/mycompany', color: '#3b5998' },
-      { message: 'Instagram ', icon: 'instagram', enabled: true, link: 'https://www.instagram.com/mycompany', color: '#c13584' },
+      { message: 'Facebook ', icon: 'facebook', enabled: true, link: 'https://www.facebook.com/botesparabasura', color: '#3b5998' },
+      { message: 'Instagram ', icon: 'instagram', enabled: true, link: 'https://www.instagram.com/botesparabasura1', color: '#c13584' },
       { message: 'Linkedin ', icon: 'linkedin', enabled: true, link: 'https://www.linkedin.com/company/mycompany', color: '#0077b5' }
     ]
   ]

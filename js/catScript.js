@@ -3,6 +3,7 @@
     * Copyright 2013-2020 Start Bootstrap
     * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-agency/blob/master/LICENSE)
     */
+var GLOBAL_URL = 'http://localhost/botesparabasuraMVC/';
 (function ($) {
     "use strict"; // Start of use strict
 
@@ -80,150 +81,71 @@
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
         });
     });
-    $(document).ready(function () {
-        var xhr = new XMLHttpRequest();
-        var sidebar = document.getElementById('sidebar-options');
-        var myObj;
-        var data={};
-        var txt="";
-        data['cat']=true;
-        var json_string = JSON.stringify(data);
-        xhr.open('POST',"http://localhost/botesparabasuraMVC/assets/php/productos.php",true);
-        xhr.setRequestHeader("Content-type", "application/json");
-        xhr.send(json_string);
+})(jQuery);// End of use strict
 
-        xhr.onreadystatechange = function()
+function navbarLoad() {
+    var xhr = new XMLHttpRequest();
+    var sidebar = document.getElementById('sidebar-options');
+    var myObj;
+    var data={};var data2={};
+    var txt="";
+    data['cat']=true;
+    var json_string = JSON.stringify(data);
+    xhr.open('POST',GLOBAL_URL+"assets/php/productos.php",true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send(json_string);
+
+    xhr.onreadystatechange = function()
+    {
+        if(this.readyState == 4 && this.status == 200)
         {
-            if(this.readyState == 4 && this.status == 200)
+            myObj = JSON.parse(this.responseText);
+            myObj.forEach(element => 
             {
-                txt += this.responseText;
-                myObj = JSON.parse(this.responseText);
-                myObj.forEach(element => 
+                var listCategorySidebar = document.createElement('li');
+                listCategorySidebar.setAttribute('class','d-inline');
+                var aCategory = document.createElement('a');
+                var listSubcategorySidebar = document.createElement('ul');
+                aCategory.setAttribute('data-toggle','collapse');
+                aCategory.setAttribute('aria-expanded','false');
+                aCategory.setAttribute('href','#cat'+element.idCategoria);
+                aCategory.innerHTML=element.nombreCategoria;
+                listCategorySidebar.appendChild(aCategory);
+                listSubcategorySidebar.setAttribute('class','collapse list-unstyled');
+                listSubcategorySidebar.setAttribute('id','cat'+element.idCategoria);
+
+                data2['idCategoria']=element.idCategoria;
+                var json_string = JSON.stringify(data2);
+                console.log(json_string);
+                xhr.open('POST',GLOBAL_URL+"assets/php/productos.php",true);
+                xhr.setRequestHeader("Content-type","application/json");
+                xhr.send(json_string);
+                xhr.onreadystatechange = function()
                 {
-                    var listCategorySidebar = document.createElement('li');
-                    listCategorySidebar.setAttribute('class','d-inline');
-                    var aCategory = document.createElement('a');
-                    var viewCategory = document.createElement('a');
-                    var listSubcategorySidebar = document.createElement('ul');
-                    aCategory.setAttribute('data-toggle','collapse');
-                    aCategory.setAttribute('aria-expanded','false');
-                    aCategory.setAttribute('href','#cat'+element.idCategoria);
-                    viewCategory.setAttribute('class','catalog-category');
-                    viewCategory.setAttribute('id',element.idCategoria);
-                    viewCategory.setAttribute('href','#');
-                    viewCategory.setAttribute('onclick','catalog(event,this,\''+element.nombreCategoria+'\');');
-                    viewCategory.innerHTML='<i class="fas fa-eye"></i>';
-                    aCategory.innerHTML=element.nombreCategoria;
-                    listCategorySidebar.appendChild(viewCategory);
-                    listSubcategorySidebar.setAttribute('class','collapse list-unstyled');
-                    listSubcategorySidebar.setAttribute('id','cat'+element.idCategoria);
-                    $.ajax({
-                        data: {"categoria" : element.idCategoria},
-                        type: "POST",
-                        dataType: "json",
-                        url: "http://localhost/botesparabasuraMVC/assets/php/productos.php",
-                    })
-                     .done(function( data, textStatus, jqXHR ) {
-                        data.forEach(element => 
+                    if(this.readyState == 4 && this.status == 200)
+                    {
+                        myObj = JSON.parse(this.responseText);
+                        myObj.forEach(element2 => 
                         {
                             var subcategory = document.createElement('li');
-                            subcategory.innerHTML='<a class="catalog-subcategory" id="'+element.idSubcategoria+'" href="#" onclick="catalog(event,this,\''+element.nombreSubcategoria+'\');">'+element.nombreSubcategoria+'</a>';
+                            subcategory.innerHTML='<a class="catalog-subcategory" id="'+element2.idSubcategoria+'" href='+GLOBAL_URL+'subcategoria/'+element2.controlador_subcategoria+'>'+element2.nombreSubcategoria+'</a>';
                             listSubcategorySidebar.appendChild(subcategory);
                         });
-                     })
-                     .fail(function( jqXHR, textStatus, errorThrown ) {
-                         if ( console && console.log ) {
-                             console.log( "La solicitud a fallado: " +  textStatus);
-                         }
-                    });
-                    listCategorySidebar.appendChild(aCategory);
-                    listCategorySidebar.appendChild(listSubcategorySidebar);
-                    sidebar.appendChild(listCategorySidebar);
-                });
-            }
+                    }
+                }
+                listCategorySidebar.appendChild(listSubcategorySidebar);
+                sidebar.appendChild(listCategorySidebar);
+            });
         }
-    });
-})(jQuery); // End of use strict
-function catalog(e,item,name)
-{
-    
-    if(item.getAttribute('class')=="catalog-category")
-    {
-        e.preventDefault();
-        loadSubcategory(item.getAttribute('id'),name);
     }
-    else if(item.getAttribute('class')=="catalog-subcategory")
-    {
-        e.preventDefault();
-        loadProducts(item.getAttribute('id'),name);
-    }
-    else if(item.getAttribute('class')=="catalog-product")
-    {
-        showModal(item.getAttribute('id'),name);
-    }
-}
-function loadSubcategory(category,name)
-{
-    var catalogContent = $('div#catalog-content');
-    var catalog = document.getElementById('catalog-content');
-    $('.catalog-category-title').text(name);
-    $('.catalog-subcategory-title').text('Selecciona la subcategoría que desas visitar');
-    $.ajax({
-        data: {"categoria" : category},
-        type: "POST",
-        dataType: "json",
-        url: "http://localhost/botesparabasuraMVC/assets/php/productos.php",
-    })
-     .done(function( data, textStatus, jqXHR ) {
-        catalogContent.empty();
-        data.forEach(element => 
-        {
-            var divElement = document.createElement('div');
-            divElement.setAttribute('class','col-sm-6 col-md-4 col-lg-3 col-xl-3 my-3');
-            divElement.innerHTML='<div class="product tumbnail thumbnail-3"><a class="catalog-subcategory" id="'+element.idSubcategoria+'" href="#" onclick="catalog(event,this,\''+element.nombreSubcategoria+'\');"><img class="img-fluid h-100 rounded catalog-item" src="assets/img/catalog/subcategory/'+element.imagenSubcategoria+'.jpg" alt="'+element.nombreSubcategoria+'"></a><div class="caption"><span>'+element.nombreSubcategoria+'</span> </div></div>';
-            catalog.appendChild(divElement);
-        });
-     })
-     .fail(function( jqXHR, textStatus, errorThrown ) {
-         if ( console && console.log ) {
-             console.log( "La solicitud a fallado: " +  textStatus);
-         }
-    });
 }
 
-function loadProducts(subcategory,name)
-{
-    var catalogContent = $('div#catalog-content');
-    var catalog = document.getElementById('catalog-content');
-    $('.catalog-category-title').text(name);
-    $('.catalog-subcategory-title').text('Selecciona un producto para conocerlo a detalle');
-    $.ajax({
-        data: {"subcategoria" : subcategory},
-        type: "POST",
-        dataType: "json",
-        url: "http://localhost/botesparabasuraMVC/assets/php/productos.php",
-    })
-     .done(function( data, textStatus, jqXHR ) {
-        catalogContent.empty();
-        data.forEach(element => 
-        {
-            var divElement = document.createElement('div');
-            divElement.setAttribute('class','col-sm-6 col-md-4 col-lg-3 col-xl-3 my-3');
-            divElement.innerHTML='<div class="product tumbnail thumbnail-3"><a class="catalog-product" id="'+element.idProducto+'" href="#" onclick="catalog(event,this,\''+element.nombreProducto+'\');" data-toggle="modal" data-target="#modal-product"><img class="img-fluid h-100 rounded catalog-item" src="assets/img/catalog/product/'+element.imagenProducto+'.jpg" alt="'+element.nombreProducto+'"></a><div class="caption"><span>'+element.nombreProducto+'</span></div></div>';
-            catalog.appendChild(divElement);
-        });
-     })
-     .fail(function( jqXHR, textStatus, errorThrown ) {
-         if ( console && console.log ) {
-             console.log( "La solicitud a fallado: " +  textStatus);
-         }
-    });
-}
 function showModal(idproducto,name)
 {
     var heading = ['Descripcion:','Linea:','Acabado:','Material:','Calibre:','Capacidad:','Colores:','Anclaje:','Vaciado:','Largo Total:','Ancho Total:','Alto Total:','Diametro Principal:','Largo (Contenedor):','Ancho (Contenedor):','Alto (Contenedor):','Diametro (Contenedor):','Largo (Letrero):','Alto (Letrero):','Adicional:'];
     var modalTitle = document.getElementById('modal-product-title');
     modalTitle.innerHTML=name;
+    console.log(modalTitle);
     var modalBody = $('#row-modal');
     var aux="";
     var cont=0;
@@ -231,7 +153,7 @@ function showModal(idproducto,name)
         data: {"idProducto" : idproducto},
         type: "POST",
         dataType: "json",
-        url: "http://localhost/botesparabasuraMVC/assets/php/productos.php",
+        url: GLOBAL_URL+"assets/php/productos.php",
     })
      .done(function( data, textStatus, jqXHR ) {
         if(data==null)
@@ -249,7 +171,7 @@ function showModal(idproducto,name)
             divImg.setAttribute('id','image-modal-product');
             divInfo.setAttribute('class','col-md-7');
             divInfo.setAttribute('id','info-modal-product');
-            divImg.innerHTML='<img class="img-fluid w-100 rounded" src="assets/img/catalog/product/'+element.imagen+'.jpg" alt="'+name+'">';
+            divImg.innerHTML='<img class="img-fluid w-100 rounded" src="'+GLOBAL_URL+'assets/img/catalog/product/'+element.imagen+'.jpg" alt="'+name+'">';
             for(var i in element)
             {
                 if(i!='imagen')
@@ -267,8 +189,6 @@ function showModal(idproducto,name)
                         else
                             aux=aux+'<tr><td>'+heading[cont]+'</td><td>'+element[i]+'</td></tr><tr><td>';
                     }
-                    else
-                        aux=aux+'<tr><td>'+heading[cont]+'</td><td> - </td></tr><tr><td>';
                     cont+=1;
                 }
             }
@@ -283,40 +203,7 @@ function showModal(idproducto,name)
      })
      .fail(function( jqXHR, textStatus, errorThrown ) {
          if ( console && console.log ) {
-             console.log( "La solicitud a fallado: " +  textStatus);
+             console.log( "La solicitud a fallado: " +  textStatus + errorThrown);
          }
     });
-}
-function homeCatalog() 
-{
-    var xhr = new XMLHttpRequest();
-    var catalogContent = $('div#catalog-content');
-    var catalog = document.getElementById('catalog-content');
-    $('.catalog-category-title').text('Nuestros Productos');
-    $('.catalog-subcategory-title').text('Selecciona la categoría que deseas visitar');
-    var myObj;
-    var data={};
-    var txt="";
-    data['cat']=true;
-    var json_string = JSON.stringify(data);
-    xhr.open('POST',"http://localhost/botesparabasuraMVC/assets/php/productos.php",true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.send(json_string);
-
-    xhr.onreadystatechange = function()
-    {
-        if(this.readyState == 4 && this.status == 200)
-        {
-            txt += this.responseText;
-            myObj = JSON.parse(this.responseText);
-            catalogContent.empty();
-            myObj.forEach(element => 
-            {
-                var divElement = document.createElement('div');
-                divElement.setAttribute('class','col-sm-6 col-md-4 col-lg-3 col-xl-3 my-3');
-                divElement.innerHTML='<div class="product tumbnail thumbnail-3"><a class="catalog-category" id="'+element.idCategoria+'" href="#" onclick="catalog(event,this,\''+element.nombreCategoria+'\');"><img class="img-fluid h-100 rounded catalog-item" src="assets/img/catalog/category/'+element.imagenCategoria+'.jpg" alt="'+element.nombreCategoria+'"></a><div class="caption"><span>'+element.nombreCategoria+'</span> </div></div>';
-                catalog.appendChild(divElement);
-            });
-        }
-    }
 }

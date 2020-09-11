@@ -15,7 +15,6 @@
                 $categoria = new Categoria();
                 $categoria->setControladorCategoria($_GET['categoria']);
                 $result = $categoria->loadSubcategorias();
-                echo $_SESSION['nombreCategoria'];
                 require_once 'views/subcategoria/index.php';
             }
         }

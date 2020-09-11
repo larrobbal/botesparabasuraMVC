@@ -58,7 +58,7 @@
         {
             $categoria=$this->getControladorCategoria();
             $load = $this->db->query("SELECT idSubcategoria,fk_idCategoria,nombreSubcategoria,controlador_subcategoria,imagenSubcategoria FROM subcategoria subcat INNER JOIN categoria cat ON subcat.fk_idCategoria = cat.idCategoria WHERE cat.controlador_categoria ='$categoria';");
-            $_SESSION['nombreCategoria']=$this->db->query("SELECT nombreCategoria FROM categoria WHERE controlador_categoria = $categoria;");
+            $_SESSION['nombreCategoria']=$this->db->query("SELECT nombreCategoria FROM categoria WHERE controlador_categoria = '$categoria';");
             return $load;
         }
     }
