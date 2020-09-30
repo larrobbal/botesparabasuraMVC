@@ -170,7 +170,7 @@
 
     function waIcon() {
         $('#wppButton').floatingWhatsApp({
-        phone: '+5215546029795',
+        phone: '+5215624178233',
         popupMessage: 'Hola! En qué puedo ayudarte?',
         message: "Que tal! Quisiera más información",
         showPopup: true,

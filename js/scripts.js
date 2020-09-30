@@ -51,7 +51,7 @@
     };
     var showInfo = function()
     {
-        if($("#mainNav").offset().top > 100) 
+        /*if($("#mainNav").offset().top > 100) 
         {
             if($( window ).width()>991)
                 $('#contactInfo').slideUp('300');
@@ -60,7 +60,7 @@
         {
             if($( window ).width()>991)
                 $('#contactInfo').slideDown('300');
-        }
+        }*/
     };
     // Collapse now if page is not at top
     navbarCollapse();
@@ -78,4 +78,6 @@
           $("a.cb-link.cb-anchor span#social-float-layer").addClass("social-float-layer")
         }
     );
+    /*Carousel Script*/
+
 })(jQuery); // End of use strict

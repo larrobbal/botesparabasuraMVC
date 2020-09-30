@@ -3,8 +3,8 @@ $.socialfloating({
   icons: 'semanticui',
   buttons: [
     [
-      { message: 'Telefono ', icon: 'phone', enabled: true, link: 'tel:+525546029795', color: '#009e99' },
-      { message: 'E-mail ', icon: 'envelope', enabled: true, link: 'mailto:ventas@botesparabasura.com', color: '#009e99' }
+      { message: 'Telefono ', icon: 'phone', enabled: true, link: 'tel:+525624178233', color: '#009e99' },
+      { message: 'E-mail ', icon: 'envelope', enabled: true, link: 'mailto:ventas@comerzia.com.mx', color: '#009e99' }
     ],
     [
       { message: 'Lista', icon: 'file alternate', enabled: true, link: 'assets/docs/lista_precios.pdf', color: '#FF8000' },
