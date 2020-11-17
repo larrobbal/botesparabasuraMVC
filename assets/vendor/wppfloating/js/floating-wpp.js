@@ -178,7 +178,7 @@
         headerTitle: 'Bienvenido!',
         headerColor: '#25D366',
         backgroundColor: '#25D366',
-        buttonImage: '<img src="http://localhost/botesparabasuraMVC/assets/vendor/wppfloating/img/whatsapp.svg" />'
+        buttonImage: '<img src="assets/vendor/wppfloating/img/whatsapp.svg" />'
         });
     }
     waIcon();
