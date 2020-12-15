@@ -2,7 +2,7 @@
     define('DBHOST',"localhost");
     define('DBUSER',"root");
     define('DBNAME',"botesparabasura");
-    define('DBPASS',"luizmar0cker0");
+    define('DBPASS',"c0merz1a*");
     define('BASE_URL','http://localhost/botesparabasuraMVC/');
     define('BASE_CATALOG','http://localhost/botesparabasuraMVC/catalogo.php');
     define('DEFAUL_CONTROLLER','categoriacontroller');

@@ -2,5 +2,5 @@
     define('DBHOST',"localhost");
     define('DBUSER',"root");
     define('DBNAME',"botesparabasura");
-    define('DBPASS',"luizmar0cker0");
+    define('DBPASS',"c0merz1a*");
 ?>

@@ -33,7 +33,7 @@
                         {
                             var divElement = document.createElement('div');
                             divElement.setAttribute('class','col-sm-6 col-md-4 col-lg-3 col-xl-3 my-3');
-                            divElement.innerHTML='<div class="product tumbnail thumbnail-3"><a class="mini-catalog-item" id="'+element.idSubcategoria+'" href="subcategoria/'+element.controlador_subcategoria+'"><img class="img-fluid h-100 rounded catalog-item" src="assets/img/catalog/subcategory/'+element.imagenSubcategoria+'.jpg" alt="'+element.nombreSubcategoria+'"></a><div class="caption"><span>'+element.nombreSubcategoria+'</span> </div></div>';
+                            divElement.innerHTML='<div class="product tumbnail thumbnail-3"><a class="mini-catalog-item" id="'+element.idSubcategoria+'" href="subcategoria/'+element.controlador_subcategoria+'"><img class="img-fluid h-100 rounded catalog-item" src="assets/img/catalog/subcategory/'+element.imagenSubcategoria+'.png" alt="'+element.nombreSubcategoria+'"></a><div class="caption"><span>'+element.nombreSubcategoria+'</span> </div></div>';
                             catalog.appendChild(divElement);
                             
                         });
@@ -73,7 +73,7 @@
                         {
                             var divElement = document.createElement('div');
                             divElement.setAttribute('class','col-sm-6 col-md-4 col-lg-3 col-xl-3 my-3');
-                            divElement.innerHTML='<div class="product tumbnail thumbnail-3"><a class="mini-catalog-item" id="'+element.idSubcategoria+'" href="subcategoria/'+element.controlador_subcategoria+'"><img class="img-fluid h-100 rounded" src="assets/img/catalog/subcategory/'+element.imagenSubcategoria+'.jpg" alt="'+element.nombreSubcategoria+'"></a><div class="caption"><span>'+element.nombreSubcategoria+'</span> </div></div>';
+                            divElement.innerHTML='<div class="product tumbnail thumbnail-3"><a class="mini-catalog-item" id="'+element.idSubcategoria+'" href="subcategoria/'+element.controlador_subcategoria+'"><img class="img-fluid h-100 rounded" src="assets/img/catalog/subcategory/'+element.imagenSubcategoria+'.png" alt="'+element.nombreSubcategoria+'"></a><div class="caption"><span>'+element.nombreSubcategoria+'</span> </div></div>';
                             catalog.appendChild(divElement);
                         });
                     }
